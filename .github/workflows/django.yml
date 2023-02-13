@@ -1,4 +1,4 @@
-name: Django Test with PostgreSQL Example
+name: Django Test
 
 on:
     workflow_call:
@@ -9,7 +9,7 @@ on:
         branches: [main]
 
 jobs:
-  simple_build:
+  simple_build_django:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -21,4 +21,21 @@ jobs:
            python-version: 3.8
       - name: Install requirements
         run: |
+            cd signIn
+            pip install -r requirements.txt
+
+jobs:
+  simple_build_fastapi:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+           python-version: 3.8
+      - name: Install requirements
+        run: |
+            cd signOut
             pip install -r requirements.txt

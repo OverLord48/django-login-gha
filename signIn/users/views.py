@@ -1,8 +1,10 @@
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from users.serializer import LoginUserSerializer
+from users.services import logout_token
 
 # Create your views here.
 
@@ -31,4 +33,11 @@ class login(ObtainAuthToken):
                 return Response({"error":"usuario inactivo"}, status=status.HTTP_401_UNAUTHORIZED)
         else:
             return Response({"error":"nombre de usuario o clave incorrectos"}, status=status.HTTP_400_BAD_REQUEST)
-        return Response({"mensaje":"hola"}, status=status.HTTP_200_OK)
+
+
+class LogoutView(APIView):
+    def post(self, request):
+        # enviamos el token recibido por form-data al microservicio
+        logout_token(request.data.get("token"))
+        # Devolvemos la respuesta al cliente
+        return Response({'success': True,'status':status.HTTP_200_OK})

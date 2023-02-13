@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from os import getenv
 from pathlib import Path
-from datetime import timedelta
 from dotenv import load_dotenv
 load_dotenv()  # take environment variables from .env.
 
@@ -66,19 +65,10 @@ REST_USE_JWT = True
 # Method authentication JWT - django rest_framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
 
     ]
-}
-
-SIMPLE_JWT = {
-  'USER_ID_FIELD': 'username',
-  'USER_AUTHENTICATION_RULE': 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
-  'ROTATE_REFRESH_TOKENS': True,
-  'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-  'REFRESH_TOKEN_LIFETIME':timedelta(days=1)
 }
 
 MIDDLEWARE = [
