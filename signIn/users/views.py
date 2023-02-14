@@ -1,12 +1,19 @@
-from rest_framework import status
+from rest_framework import generics,status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
-from users.serializer import LoginUserSerializer
+from users.serializer import LoginUserSerializer, CreateUserSerializer
 from users.services import logout_token
 
 # Create your views here.
+
+class SignupView(generics.CreateAPIView):
+    serializer_class = CreateUserSerializer
+    http_method_names = ['post']
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
 
 class login(ObtainAuthToken):
     

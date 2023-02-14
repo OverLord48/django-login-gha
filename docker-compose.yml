@@ -1,0 +1,37 @@
+version: '3.5'
+
+services:
+  db:
+    image: postgres:11
+    container_name: db
+    restart: always
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    env_file:
+      - .env
+
+  django:
+    build:
+      context: ./signIn
+    container_name: micro-signIn
+    restart: always
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8080"
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+  fastapi:
+    build:
+      context: ./signOut
+    container_name: micro-signOut
+    restart: always
+    command: bash -c "python main.py"
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
