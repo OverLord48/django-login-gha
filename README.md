@@ -10,7 +10,8 @@ _De la siguiente forma_
 ```
 - Crear el .env partiendo del .env.example que esta en la raiz del proyecto
 
-- Asignar credenciales correspondientes a cada variable dejada en el .env.example (Opcional, se pueden dejar tal cual estan en el .example)
+- Asignar credenciales correspondientes a cada variable dejada en el .env.example 
+  (Opcional, se pueden dejar tal cual estan en el .example)
 
 - En caso de tener docker pasar a los pasos del despliegue.
 
