@@ -20,6 +20,8 @@ _De la siguiente forma_
     - Debe tener virtualenv o anaconda para generar entorno virtual de ejecucion para este servicio
 
     - Ejecutar el archivo como pip install -r requirements.txt respectivo para adecuar el entorno
+
+    nota: cada api debe tener diferentes entornos virtuales
 ```
 
 ## Despliegue 📦
@@ -43,8 +45,14 @@ _Ejecutar el deploy_
   
     - Ejecutar migraciones python manage.py migrate
 
-    - Levantar el servicio con python manage.py runserver
+    - Levantar el servicio signIn con python manage.py runserver 8080
 
+    - Levantar el servicio signOut con python main.py
+
+    - para acceder a la api signIn http://0.0.0.0:8080/docs
+
+    - para acceder a la api signOut http://0.0.0.0:8000/docs
+    
     nota : recordar que debe tener el entorno virtual encendido
  ```
 
